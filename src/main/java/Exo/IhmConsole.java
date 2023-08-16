@@ -40,7 +40,7 @@ public class IhmConsole {
 
             }
 
-        } while (choix != 0);
+        } while (choix != 4);
 
         scanner.close();
 
