@@ -86,12 +86,8 @@ public class StudentManager {
     }
 
 
-
-
-
-
       public static List<Student> getAllStudents() {
-        List<Student> students = new ArrayList<Student>();
+        List<Student> students = new ArrayList<>();
         Connection connection = null;
             String query = "SELECT * FROM student";
 

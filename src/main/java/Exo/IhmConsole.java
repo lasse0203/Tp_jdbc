@@ -1,5 +1,5 @@
 package Exo;
-import Exo.utils.DatabaseManager;
+
 
 import java.util.List;
 import java.util.Scanner;
@@ -50,7 +50,7 @@ public class IhmConsole {
 
 
     public static void ShowListStudent() {
-        // Your existing code for adding a student
+
 
         List<Student> studentList = getAllStudents();
 
