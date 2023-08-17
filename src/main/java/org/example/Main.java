@@ -1,12 +1,13 @@
 package org.example;
-
 import Exo.IhmConsole;
-import Exo.Student;
+import Exo.StudentManager;
+
+
 
 public class Main {
     public static void main(String[] args) {
 
-        Student.addStudent();
+        //StudentManager.addStudent();
         IhmConsole.Menu();
 
 

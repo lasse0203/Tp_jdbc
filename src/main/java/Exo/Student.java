@@ -1,150 +1,87 @@
 package Exo;
 
-import Exo.utils.DatabaseManager;
-
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
+import static Exo.StudentManager.getAllStudents;
 
-public class Student {
+public class  Student {
+    Scanner scanner = new Scanner(System.in);
+   public static ArrayList<Student> students = new ArrayList<>();
 
+        private int id;
+        private String  lastname;
+        private String firstname ;
+        private int classNumber ;
+        private LocalDate degreeDate;
 
-    private static Scanner scanner = new Scanner(System.in);
-
-    public static void addStudent() {
-        Connection connection = null;
-        System.out.println("Enter your lastname plz: ");
-        String lastname = scanner.nextLine();
-        System.out.println("Enter your firstname plz: ");
-        String firstname = scanner.nextLine();
-        System.out.println("Enter your class number plz: ");
-        int classNumber = scanner.nextInt();
-        System.out.println("Enter your graduation date  plz: format ( yyyy-MM-dd) ");
-        String dateString = scanner.next();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate degreeDate = LocalDate.parse(dateString, formatter);
-
-        String request = "INSERT INTO student (last_name, first_name, class_number, degree_date ) VALUES('" + lastname + "','" + firstname + "','" + classNumber + "','" + degreeDate + "')";
-        try {
-            connection = DatabaseManager.getPostgreSQLConnection();
-            Statement statement = connection.createStatement();
-
-            boolean res = statement.execute(request);
-            if (res) {
-                System.out.println("Student added successfully ! ");
-            } else {
-                System.out.println("Error adding student !");
-
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-
-        } finally {
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }
-    }
-
-
-    public static void listStudents() {
-        Connection connection = null;
-        try {
-            connection = DatabaseManager.getPostgreSQLConnection();
-            String request = "SELECT * FROM student";
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(request);
-            while (resultSet.next()) {
-                System.out.println(resultSet.getInt("id") + " , " + resultSet.getString("last_name")
-                        + " , " + resultSet.getString("first_name") + " , " +
-                        resultSet.getString("class_number") + " , " + resultSet.getString("degree_date"));
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-
-        } finally {
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-
-            }
-
-        }
-    }
-
-    public static void deleteStudent() {
-        listStudents();
-        System.out.println("which student would like to delete? ");
-        int idStudent = scanner.nextInt();
-
-        Connection connection = null;
-        try {
-            connection = DatabaseManager.getPostgreSQLConnection();
-            String request = "DELETE FROM student where id = " + idStudent;
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(request);
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-
-        } finally {
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-
-            }
+        public Student() {
 
         }
 
-    }
-    public static void studentByClass(){
-        listStudents();
-        System.out.println("which classroom do you like to check? ");
-        int classNumber = scanner.nextInt();
+        public Student(String lastname, String firstname, int classNumber, LocalDate degreeDate) {
 
-       Connection connection = null;
-        try {
-            connection = DatabaseManager.getPostgreSQLConnection();
-            String request = "select * FROM student where class_number = " + classNumber;
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(request);
-            while (resultSet.next()) {
-                System.out.println(resultSet.getInt("id") + " , " + resultSet.getString("last_name")
-                        + " , " + resultSet.getString("first_name") + " , " +
-                        resultSet.getString("class_number") + " , " + resultSet.getString("degree_date"));
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+                this.lastname = lastname;
+                this.firstname = firstname;
+                this.classNumber = classNumber;
+                this.degreeDate = degreeDate;
+        }
 
-        } finally {
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+        public int getId() {
+                return id;
+        }
 
-            }
+        public void setId(int id) {
+                this.id = id;
+        }
 
+        public String getLastname() {
+                return lastname;
+        }
+
+        public void setLastname(String lastname) {
+                this.lastname = lastname;
+        }
+
+        public String getFirstname() {
+                return firstname;
+        }
+
+        public void setFirstname(String firstname) {
+                this.firstname = firstname;
+        }
+
+        public int getClassNumber() {
+                return classNumber;
+        }
+
+        public void setClassNumber(int classNumber) {
+                this.classNumber = classNumber;
+        }
+
+        public LocalDate getDegreeDate() {
+                return degreeDate;
+        }
+
+        public void setDegreeDate(LocalDate degreeDate) {
+                this.degreeDate = degreeDate;
         }
 
 
-    }
+
+        public String toString() {
+                return "Student{" +
+                        "id=" + id +
+                        ", lastname='" + lastname + '\'' +
+                        ", firstname='" + firstname + '\'' +
+                        ", classNumber=" + classNumber +
+                        ", degreeDate=" + degreeDate +
+                        '}';
+        }
+
+
+
 
 }

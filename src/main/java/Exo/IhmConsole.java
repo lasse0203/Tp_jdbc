@@ -1,7 +1,10 @@
 package Exo;
+import Exo.utils.DatabaseManager;
 
-
+import java.util.List;
 import java.util.Scanner;
+
+import static Exo.StudentManager.getAllStudents;
 
 public class IhmConsole {
 
@@ -23,13 +26,13 @@ public class IhmConsole {
 
             switch (choix) {
                 case 1:
-                    Student.listStudents();
+                    getAllStudent();
                     break;
                 case 2:
-                    Student.studentByClass();
+                    StudentManager.studentByClass();
                     break;
                 case 3:
-                    Student.deleteStudent();
+                    StudentManager.deleteStudent();
                     break;
                 case 4:
                     System.out.println("Bye bye");
@@ -43,9 +46,29 @@ public class IhmConsole {
         } while (choix != 4);
 
         scanner.close();
-
     }
+
+
+    public static void getAllStudent() {
+        // Your existing code for adding a student
+
+        List<Student> studentList = getAllStudents();
+
+        System.out.println("List of students:");
+        for (Student student : studentList) {
+            System.out.println(" id : " + student.getId());
+            System.out.println("Last Name: " + student.getLastname());
+            System.out.println("First Name: " + student.getFirstname());
+            System.out.println("Class Number: " + student.getClassNumber());
+            System.out.println("Degree Date: " + student.getDegreeDate());
+
+        }
+    }
+
+
+
 }
+
 
 
 
