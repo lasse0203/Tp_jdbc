@@ -97,6 +97,7 @@ public class StudentManager {
 
                 while (resultSet.next()) {
                     Student student = new Student();
+                    student.setId(resultSet.getInt("id"));
                     student.setLastname(resultSet.getString("last_name"));
                     student.setFirstname(resultSet.getString("first_name"));
                     student.setClassNumber(resultSet.getInt("class_number"));
