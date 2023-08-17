@@ -2,14 +2,10 @@ package Exo;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
-import static Exo.StudentManager.getAllStudents;
 
 public class  Student {
-    Scanner scanner = new Scanner(System.in);
-   public static ArrayList<Student> students = new ArrayList<>();
 
         private int id;
         private String  lastname;
