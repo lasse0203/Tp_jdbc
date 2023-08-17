@@ -26,7 +26,7 @@ public class IhmConsole {
 
             switch (choix) {
                 case 1:
-                    getAllStudent();
+                    ShowListStudent();
                     break;
                 case 2:
                     StudentManager.studentByClass();
@@ -49,7 +49,7 @@ public class IhmConsole {
     }
 
 
-    public static void getAllStudent() {
+    public static void ShowListStudent() {
         // Your existing code for adding a student
 
         List<Student> studentList = getAllStudents();

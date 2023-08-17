@@ -53,8 +53,8 @@ public class StudentManager {
 
     public static void deleteStudent() {
         Scanner scanner = new Scanner(System.in);
+        IhmConsole.ShowListStudent();
         System.out.println("which student would like to delete? ");
-        getAllStudents();
         int idStudent = scanner.nextInt();
 
         Connection connection = null;
